@@ -36,22 +36,21 @@ class Pyphox:
         if not self.has_sensor(sensor):
             return None
 
-        prefix = sensor.prefix()
-        stype = sensor.value.type
+        prefix = sensor.value['prefix']
+        stype = sensor.value['type']
         if stype == 'XYZ':
             return XYZSensor(self, prefix)
 
-        elif stype == 'V':
+        if stype == 'V':
             self.query += prefix + "&"
             return VSensor(self, prefix)
 
-        else:
-            return None
+        return None
 
     def has_sensor(self, sensor: SensorType) -> bool:
         '''Returns true if the experiment uses the given sensor type, \
            otheriwse, false will be returned'''
-        return sensor.value.name in self.sensors
+        return sensor.value['name'] in self.sensors
 
     def execute(self, command: str) -> dict[str, Any]:
         '''Executes some remote command on the host. Returns the JSON-like \
