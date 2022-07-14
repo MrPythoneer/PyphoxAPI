@@ -1,2 +1,4 @@
 # PyphoxAPI
-Phyphox API for access to the remote experiments
+Phyphox API for access the remote experiments data
+
+Phyphox official [website](https://phyphox.org/)
